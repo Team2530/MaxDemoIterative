@@ -1,0 +1,12 @@
+
+\.cproject
+
+\.settings/
+
+build\.properties
+
+build\.xml
+
+Debug/
+
+\.project
