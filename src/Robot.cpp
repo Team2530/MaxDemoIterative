@@ -7,6 +7,7 @@
 
 //#include <iostream>
 //#include <string>
+#include <Robot.h>
 #include "WPILib.h"
 #include <IterativeRobot.h>
 #include <LiveWindow/LiveWindow.h>
@@ -15,21 +16,27 @@
 #include <Drive/DifferentialDrive.h>
 #include <Joystick.h>
 #include <Spark.h>
+#include <Subsystems/DriveTrain.h>
+#include <Commands/DriveWithJoystick.h>
 
-class Robot : public frc::IterativeRobot {
-	frc::VictorSP frontLeftMotor{1};
-	frc::VictorSP frontRightMotor{0};
-	frc::VictorSP backLeftMotor{2};
-	frc::VictorSP backRightMotor{3};
-	frc::SpeedControllerGroup leftSide{frontLeftMotor, backLeftMotor};
-	frc::SpeedControllerGroup rightSide{frontRightMotor, backRightMotor};
-	frc::DifferentialDrive robotDrive{leftSide, rightSide};
-	frc::Joystick stick{0};
-public:
-	void RobotInit() {
-		m_chooser.AddDefault(kAutoNameDefault, kAutoNameDefault);
-		m_chooser.AddObject(kAutoNameCustom, kAutoNameCustom);
-		frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+Robot::Robot() :
+		TimedRobot(), driveTrain(this), oi(this) {
+
+}
+
+	void Robot::RobotInit() {
+		//m_chooser.AddDefault(kAutoNameDefault, kAutoNameDefault);
+		//m_chooser.AddObject(kAutoNameCustom, kAutoNameCustom);
+		//frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+	}
+
+	void Robot::DisabledInit() {
+
+	}
+
+	void Robot::DisabledPeriodic() {
+
+		frc::Scheduler::GetInstance()->Run();
 	}
 
 	/*
@@ -46,41 +53,37 @@ public:
 	 * SendableChooser make sure to add them to the chooser code above as
 	 * well.
 	 */
-	void AutonomousInit() override {
-		m_autoSelected = m_chooser.GetSelected();
+	void Robot::AutonomousInit() {
+		//m_autoSelected = m_chooser.GetSelected();
 		// m_autoSelected = SmartDashboard::GetString(
 		// 		"Auto Selector", kAutoNameDefault);
 		//std::cout << "Auto selected: " << m_autoSelected << std::endl;
-
+		/*
 		if (m_autoSelected == kAutoNameCustom) {
 			// Custom Auto goes here
 		} else {
 			// Default Auto goes here
-		}
+		}*/
 	}
 
-	void AutonomousPeriodic() {
-		if (m_autoSelected == kAutoNameCustom) {
+	void Robot::AutonomousPeriodic() {
+		/*if (m_autoSelected == kAutoNameCustom) {
 			// Custom Auto goes here
 		} else {
 			// Default Auto goes here
-		}
+		}*/
 	}
 
-	void TeleopInit() {}
-
-	void TeleopPeriodic() {
-		robotDrive.ArcadeDrive(stick.GetY(), stick.GetX());
+	void Robot::TeleopInit() {
+		Command* dfault = new DriveWithJoystick(this);
+		dfault->Start();
 	}
 
-	void TestPeriodic() {}
+	void Robot::TeleopPeriodic() {
+		frc::Scheduler::GetInstance()->Run();
+		//robotDrive.ArcadeDrive(stick.GetY(), stick.GetX());
+	}
 
-private:
-	frc::LiveWindow& m_lw = *LiveWindow::GetInstance();
-	frc::SendableChooser<std::string> m_chooser;
-	const std::string kAutoNameDefault = "Default";
-	const std::string kAutoNameCustom = "My Auto";
-	std::string m_autoSelected;
-};
+	void Robot::TestPeriodic() {}
 
 START_ROBOT_CLASS(Robot)
