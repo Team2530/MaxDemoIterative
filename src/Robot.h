@@ -17,11 +17,13 @@
 #include <Spark.h>
 #include <Subsystems/DriveTrain.h>
 #include <OI.h>
+#include <Subsystems/Lifter.h>
 
 class Robot : public frc::TimedRobot {
 public:
 	DriveTrain driveTrain;
 	OI oi;
+	Lifter lifter;
 
 	Robot();
 
