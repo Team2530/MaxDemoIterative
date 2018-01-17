@@ -8,12 +8,16 @@
 #pragma once
 
 #include "Joystick.h"
-
+#include "XboxController.h"
+#include <Buttons/JoystickButton.h>
 class Robot;
 class OI {
 public:
 	frc::Joystick stick { 0 };
+	XboxController *Xbox;
 	OI(Robot* r);
 private:
 	Robot* robot;
+	JoystickButton *RB;
+	JoystickButton *LB;
 };
