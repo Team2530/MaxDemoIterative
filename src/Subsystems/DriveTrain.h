@@ -25,6 +25,7 @@ public:
 	void InitDefaultCommand();
 	void Drive(frc::Joystick*stick);
 	void Stop();
+	double DriveFunction(double inSpeed);
 };
 
 #endif  // DriveTrain_H
