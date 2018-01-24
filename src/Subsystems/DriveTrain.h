@@ -21,6 +21,8 @@ private:
 	Robot* robot;
 
 public:
+	std::shared_ptr<Networktable> table;
+
 	DriveTrain(Robot* r);
 	void InitDefaultCommand();
 	void Drive(frc::Joystick*stick);
