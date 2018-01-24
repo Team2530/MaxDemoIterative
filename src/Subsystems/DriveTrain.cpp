@@ -17,11 +17,11 @@ void DriveTrain::Drive(frc::Joystick*stick) {
 	double stickZ = stick->GetZ();
 	double stickY2 = DriveFunctionY(stickY);
 	double stickZ2 = DriveFunctionZ(stickZ);
-	robotDrive->ArcadeDrive(stickY2, stickZ2);
+	robotDrive.ArcadeDrive(stickY2, stickZ2);
 }
 
 void DriveTrain::Stop() {
-	robotDrive->ArcadeDrive(0, 0);
+	robotDrive.ArcadeDrive(0, 0);
 }
 
 double DriveTrain::DriveFunctionY(double inSpeed) {
