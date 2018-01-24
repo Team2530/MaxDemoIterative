@@ -15,8 +15,8 @@ void DriveTrain::InitDefaultCommand() {
 void DriveTrain::Drive(frc::Joystick*stick) {
 	double stickY = stick->GetY();
 	double stickZ = stick->GetZ();
-	double stickY2 = DriveFunction(stickY);
-	double stickZ2 = DriveFunction(stickZ);
+	double stickY2 = DriveFunctionY(stickY);
+	double stickZ2 = DriveFunctionZ(stickZ);
 	robotDrive->ArcadeDrive(stickY2, stickZ2);
 }
 
@@ -24,8 +24,13 @@ void DriveTrain::Stop() {
 	robotDrive->ArcadeDrive(0, 0);
 }
 
-double DriveTrain::DriveFunction(double inSpeed) {
-	double outSpeed = .5*pow(inSpeed, 3) + .5*inSpeed;
+double DriveTrain::DriveFunctionY(double inSpeed) {
+	double outSpeed = .25*pow(inSpeed, 3) + .75*inSpeed;
+	return outSpeed;
+}
+
+double DriveTrain::DriveFunctionZ(double inSpeed) {
+	double outSpeed = .25*pow(inSpeed, 3) + .75*inSpeed;
 	return outSpeed;
 }
 
