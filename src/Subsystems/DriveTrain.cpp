@@ -30,7 +30,7 @@ double DriveTrain::DriveFunctionY(double inSpeed) {
 }
 
 double DriveTrain::DriveFunctionZ(double inSpeed) {
-	double outSpeed = .25*pow(inSpeed, 3) + .75*inSpeed;
+	double outSpeed = .8*pow(inSpeed, 3) + .2*inSpeed;
 	return outSpeed;
 }
 
