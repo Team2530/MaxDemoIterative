@@ -1,6 +1,7 @@
 #include "DriveTrain.h"
 #include <Commands/DriveWithJoystick.h>
 #include <Drive/DifferentialDrive.h>
+#include <NetworkTables/NetworkTable.h>
 
 DriveTrain::DriveTrain(Robot *r) :
 		Subsystem("ExampleSubsystem"),
@@ -12,7 +13,10 @@ void DriveTrain::InitDefaultCommand() {
 	SetDefaultCommand(new DriveWithJoystick(robot));
 }
 
-table = NetworkTable::GetTable("robotPosition");
+//table = NetworkTable::GetTable("robotPosition");
+
+NetworkTable *table;
+table = NetworkTable::getTable("datatable");
 
 void DriveTrain::Drive(frc::Joystick*stick) {
 	double stickY = stick->GetY();
