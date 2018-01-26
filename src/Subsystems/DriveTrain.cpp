@@ -13,18 +13,11 @@ void DriveTrain::InitDefaultCommand() {
 	SetDefaultCommand(new DriveWithJoystick(robot));
 }
 
-//table = NetworkTable::GetTable("robotPosition");
-
-NetworkTable *table;
-table = NetworkTable::getTable("datatable");
-
 void DriveTrain::Drive(frc::Joystick*stick) {
 	double stickY = stick->GetY();
 	double stickZ = stick->GetZ();
-	table->PutNumber("z", stickZ);
 	double stickY2 = DriveFunctionY(stickY);
 	double stickZ2 = DriveFunctionZ(stickZ);
-	table->PutNumber("z2", stickZ2);
 	robotDrive.ArcadeDrive(stickY2, -stickZ2);
 }
 
