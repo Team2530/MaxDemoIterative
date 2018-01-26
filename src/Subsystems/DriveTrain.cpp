@@ -16,12 +16,12 @@ void DriveTrain::InitDefaultCommand() {
 void DriveTrain::Drive(frc::Joystick*stick) {
 	double stickY = stick->GetY();
 	double stickZ = stick->GetZ();
-	SmartDashboard::PutData("Y", stickY);
-	SmartDashboard::PutData("Z", stickZ);
+	SmartDashboard::PutDouble("Y", stickY);
+	SmartDashboard::PutDouble("Z", stickZ);
 	double stickY2 = DriveFunctionY(stickY);
 	double stickZ2 = DriveFunctionZ(stickZ);
-	SmartDashboard::PutData("Y2", stickY2);
-	SmartDashboard::PutData("Z2", stickZ2);
+	SmartDashboard::PutDouble("Y2", stickY2);
+	SmartDashboard::PutDouble("Z2", stickZ2);
 	robotDrive.ArcadeDrive(stickY2, -stickZ2);
 }
 
