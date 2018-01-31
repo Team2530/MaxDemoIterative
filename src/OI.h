@@ -18,6 +18,11 @@ public:
 	OI(Robot* r);
 private:
 	Robot* robot;
+
+	//X-box buttons
 	JoystickButton *RB;
 	JoystickButton *LB;
+
+	//Joystick buttons
+	JoystickButton *B3;
 };

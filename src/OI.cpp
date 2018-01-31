@@ -13,10 +13,17 @@
 
 OI::OI(Robot* r) : robot(r)
 {
+	//X-box commands here
 	Xbox = new frc::XboxController(1);
 	LB = new frc::JoystickButton(Xbox, ControllerConstants::xBoxButtonMap::kLBbutton);
 	LB->WhileHeld(new SlowLift(robot));
 	RB = new frc::JoystickButton(Xbox, ControllerConstants::xBoxButtonMap::kRBbutton);
 	RB->WhileHeld(new FastLift(robot));
+
+	//Joystick commands here
+	stick = new frc::Joystick(0);
+	B3 = new frc::JoystickButton(stick, 3);
+	B3->WhileHeld(new GoStraight());
+
 	// Process operator interface input here.
 }
