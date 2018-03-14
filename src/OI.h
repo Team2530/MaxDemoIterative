@@ -13,7 +13,11 @@
 class Robot;
 class OI {
 public:
-	frc::Joystick stick { 0 };
+
+	Joystick* GetJoystick();
+
+	Joystick* stick;
+
 	XboxController *Xbox;
 	OI(Robot* r);
 private:

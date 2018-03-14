@@ -23,7 +23,7 @@ OI::OI(Robot* r) : robot(r)
 	//Joystick commands here
 	stick = new frc::Joystick(0);
 	B3 = new frc::JoystickButton(stick, 3);
-	B3->WhileHeld(new GoStraight());
+	//B3->WhileHeld(new GoStraight());
 
 	// Process operator interface input here.
 }

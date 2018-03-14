@@ -21,7 +21,7 @@
 
 class Robot : public frc::TimedRobot {
 public:
-	DriveTrain driveTrain;
+	static std::shared_ptr<DriveTrain> drivetrain;
 	OI oi;
 	Lifter lifter;
 
